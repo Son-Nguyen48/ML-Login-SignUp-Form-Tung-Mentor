@@ -1,46 +1,79 @@
-const email = document.querySelector("input[type=email]");
+const email = document.getElementById("email");
 
 const btnLogin = document.querySelector(".login-button");
 
-const password = document.querySelector("input[type=password]");
+const password = document.getElementById("password");
 
 // const label = document.querySelector("#input-task + label");
 // console.log(label);
+
+email.onkeyup = function (e) {
+  e.preventDefault();
+  const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const emailErrorNode = email.parentElement.lastElementChild;
+  const emailValue = email.value.trim();
+  const isValidEmail = emailValue.match(regexEmail);
+  if (!isValidEmail && emailValue) {
+    emailErrorNode.classList.add("error");
+    emailErrorNode.textContent =
+      "Mời nhập email theo đúng định dạng abc@abc.abc";
+  } else if (emailValue.match(regexEmail) || emailValue) {
+    emailErrorNode.classList.remove("error");
+  }
+};
+
+password.onkeyup = function (e) {
+  e.preventDefault();
+  const regexPassword =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g;
+  const passwordErrorNode = password.parentElement.lastElementChild;
+  const passwordValue = password.value.trim();
+  const isValidPassword = passwordValue.match(regexPassword);
+  if (!isValidPassword && passwordValue) {
+    passwordErrorNode.classList.add("error");
+    passwordErrorNode.textContent =
+      "Mời nhập password theo đúng định dạng: Tối thiểu tám ký tự, ít nhất một chữ cái viết hoa,chữ cái viết thường, ký tự đặc biệt!";
+  } else if (passwordValue.match(regexPassword) || passwordValue) {
+    passwordErrorNode.classList.remove("error");
+  }
+};
 
 btnLogin.onclick = function (e) {
   e.preventDefault();
   const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const regexPassword =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g;
+  const emailErrorNode = email.parentElement.lastElementChild;
+  const passwordErrorNode = password.parentElement.lastElementChild;
   //Check validate email enter
-  const isValidEmail = email.value.trim().match(regexEmail);
+  const emailValue = email.value.trim();
+  const isValidEmail = emailValue.match(regexEmail);
   if (!isValidEmail) {
-    email.parentElement.lastElementChild.classList.add("error");
-    email.parentElement.lastElementChild.textContent =
+    emailErrorNode.classList.add("error");
+    emailErrorNode.textContent =
       "Mời nhập email theo đúng định dạng abc@abc.abc";
   }
   //Check validate password enter
-  const isValidPassword = password.value.trim().match(regexPassword);
+  const passwordValue = password.value.trim();
+  const isValidPassword = passwordValue.match(regexPassword);
   if (!isValidPassword) {
-    password.parentElement.lastElementChild.classList.add("error");
-    password.parentElement.lastElementChild.textContent =
+    passwordErrorNode.classList.add("error");
+    passwordErrorNode.textContent =
       "Mời nhập password theo đúng định dạng: Tối thiểu tám ký tự, ít nhất một chữ cái viết hoa,chữ cái viết thường, ký tự đặc biệt!";
-  } else if (password.value.trim().match(regexPassword)) {
-    password.parentElement.lastElementChild.classList.remove("error");
+  } else if (passwordValue.match(regexPassword)) {
+    passwordErrorNode.classList.remove("error");
   }
   //Check validate password length = 0
-  if (!password.value.length) {
-    password.parentElement.lastElementChild.classList.add("error");
-    password.parentElement.lastElementChild.textContent =
-      "Không được bỏ trống ô password";
+  if (!passwordValue) {
+    passwordErrorNode.classList.add("error");
+    passwordErrorNode.textContent = "Không được bỏ trống ô password";
   }
   //Check validate email length = 0
-  if (!email.value.length) {
-    email.parentElement.lastElementChild.classList.add("error");
-    email.parentElement.lastElementChild.textContent =
-      "Không được bỏ trống ô email";
-  } else if (email.value.trim().match(regexEmail)) {
-    email.parentElement.lastElementChild.classList.remove("error");
+  if (!emailValue) {
+    emailErrorNode.classList.add("error");
+    emailErrorNode.textContent = "Không được bỏ trống ô email";
+  } else if (emailValue.match(regexEmail)) {
+    emailErrorNode.classList.remove("error");
   }
 
   //Login success
