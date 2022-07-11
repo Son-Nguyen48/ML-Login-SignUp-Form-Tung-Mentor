@@ -59,12 +59,11 @@ btnSignup.onclick = function (e) {
     confirmPassword.parentElement.lastElementChild.classList.add("error");
     confirmPassword.parentElement.lastElementChild.textContent =
       "Không được bỏ trống ô confirm password";
-  } else if (passwordComparison) {
+  } else if (isSamePassword) {
     confirmPassword.parentElement.lastElementChild.classList.remove("error");
   }
   //Regiter success
-  if (emailCheck && passwordCheck && passwordComparison) {
+  if (isValidEmail && isValidPassword && isSamePassword) {
     alert("Đăng ký thành công!");
-  } else {
   }
 };
