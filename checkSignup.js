@@ -126,6 +126,6 @@ btnSignup.onclick = function (e) {
   }
   //Regiter success
   if (isValidEmail && isValidPassword && isSamePassword) {
-    alert("Đăng ký thành công!");
+    location.href = "./index.html";
   }
 };

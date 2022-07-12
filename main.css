@@ -19,8 +19,7 @@ body {
 body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-  -webkit-animation: gradient 15s ease infinite;
-          animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
   height: 100vh;
   font-size: 2rem;
 }
@@ -91,31 +90,23 @@ form button:hover {
   transform: scale(0.98);
 }
 form .signup-link,
-form .login-button {
+form .login-button,
+form .about-link,
+form .login-link {
   font-size: 2rem;
   color: #333;
   text-decoration: none;
   transition: 0.3s all ease;
 }
-form .signup-link:hover {
+form .signup-link:hover,
+form .about-link:hover,
+form .login-link:hover {
   transform: scale(1.2);
 }
 form .signup-button {
   font-size: 2rem;
   color: #333;
   text-decoration: none;
-}
-
-@-webkit-keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 @keyframes gradient {
@@ -128,4 +119,6 @@ form .signup-button {
   100% {
     background-position: 0% 50%;
   }
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */

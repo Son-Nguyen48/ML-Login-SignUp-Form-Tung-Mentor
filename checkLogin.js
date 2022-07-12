@@ -71,6 +71,38 @@ btnLogin.onclick = function (e) {
 
   //Login success
   if (isValidEmail && isValidPassword) {
-    alert("Đăng nhập thành công!");
+    let userArray = [
+      { id: 1, email: emailValue, password: passwordValue },
+      { id: 2, email: emailValue, password: passwordValue }
+    ];
+    console.log("go here");
+    sessionStorage.setItem("userKey", JSON.stringify(userArray));
+    console.log("go here");
+    location.href = "homepage.html";
   }
 };
+
+//Stop browser back button
+function preventBack() {
+  window.history.forward();
+}
+
+setTimeout("preventBack()", 0);
+
+window.onunload = function () {
+  null;
+};
+
+//Save email and password to sessionStorage
+let storedArray = sessionStorage.getItem("userKey");
+
+userArray = JSON.parse(storedArray);
+
+console.log(userArray);
+
+const signupLink = document.querySelector(".signup-link");
+const loginLink = document.querySelector(".login-link");
+
+if (userArray) {
+  window.location = "homepage.html";
+}

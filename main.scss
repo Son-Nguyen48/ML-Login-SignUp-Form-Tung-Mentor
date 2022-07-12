@@ -93,14 +93,18 @@ form {
     }
   }
   .signup-link,
-  .login-button {
+  .login-button,
+  .about-link,
+  .login-link {
     font-size: 2rem;
     color: #333;
     text-decoration: none;
     transition: 0.3s all ease;
   }
 
-  .signup-link {
+  .signup-link,
+  .about-link,
+  .login-link {
     &:hover {
       transform: scale(1.2);
     }
