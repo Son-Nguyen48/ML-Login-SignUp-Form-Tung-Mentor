@@ -3,7 +3,62 @@ const email = document.getElementById("email");
 const password = document.querySelector(".password");
 const confirmPassword = document.querySelector(".confirm-password");
 const btnSignup = document.querySelector(".signup-button");
+//Show error when key change
 
+const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+const regexPassword =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g;
+const emailErrorMessage = "Mời nhập email theo đúng định dạng abc@abc.abc";
+const passwordErrorMessage =
+  "Mời nhập password theo đúng định dạng: Tối thiểu tám ký tự, ít nhất một chữ cái viết hoa,chữ cái viết thường, ký tự đặc biệt!";
+const confirmPasswordErrorMessage =
+  "Hai password không trùng nhau, mời nhập lại!";
+const notEnoughLengthMessage = "Không được để trống ô này";
+
+function isSamePasswordCheck(pw, cfpw, error) {
+  return function () {
+    const cfpwErrorNode = cfpw.parentElement.lastElementChild;
+    const pwValue = pw.value.trim();
+    const cfpwValue = cfpw.value.trim();
+    isSamePassword = pwValue === cfpwValue;
+    if (!isSamePassword) {
+      cfpwErrorNode.classList.add("error");
+      cfpwErrorNode.textContent = error;
+    } else {
+      cfpwErrorNode.classList.remove("error");
+    }
+  };
+}
+
+function eventOnkeyupRegex(input, regex, error) {
+  return function () {
+    const inputErrorNode = input.parentElement.lastElementChild;
+    const inputValue = input.value.trim();
+    const isValidInput = inputValue.match(regex);
+    if (!isValidInput && inputValue) {
+      inputErrorNode.classList.add("error");
+      inputErrorNode.textContent = error;
+    } else if (isValidInput || inputValue) {
+      inputErrorNode.classList.remove("error");
+    }
+  };
+}
+
+confirmPassword.onkeyup = isSamePasswordCheck(
+  password,
+  confirmPassword,
+  confirmPasswordErrorMessage
+);
+email.onkeyup = eventOnkeyupRegex(email, regexEmail, emailErrorMessage);
+password.onkeyup = eventOnkeyupRegex(
+  password,
+  regexPassword,
+  passwordErrorMessage
+);
+
+/*--------------------------------------------------------------------*/
+
+//Show error when click button
 btnSignup.onclick = function (e) {
   e.preventDefault();
   const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
@@ -28,8 +83,8 @@ btnSignup.onclick = function (e) {
   passwordValue = password.value.trim();
   const isValidPassword = passwordValue.match(regexPassword);
   if (!isValidPassword) {
-    password.parentElement.lastElementChild.classList.add("error");
-    password.parentElement.lastElementChild.textContent =
+    passwordErrorNode.classList.add("error");
+    passwordErrorNode.textContent =
       "Mời nhập password theo đúng định dạng: Tối thiểu tám ký tự, ít nhất một chữ cái viết hoa,chữ cái viết thường, ký tự đặc biệt!";
   }
 
@@ -56,11 +111,10 @@ btnSignup.onclick = function (e) {
   }
   //Check password length = 0
   if (!passwordValue) {
-    password.parentElement.lastElementChild.classList.add("error");
-    password.parentElement.lastElementChild.textContent =
-      "Không được bỏ trống ô password";
+    passwordErrorNode.classList.add("error");
+    passwordErrorNode.textContent = "Không được bỏ trống ô password";
   } else if (passwordValue.match(regexPassword)) {
-    password.parentElement.lastElementChild.classList.remove("error");
+    passwordErrorNode.classList.remove("error");
   }
   //Check confirm password length = 0
   if (!confirmPasswordValue) {
