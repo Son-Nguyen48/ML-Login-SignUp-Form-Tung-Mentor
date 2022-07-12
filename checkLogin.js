@@ -93,7 +93,7 @@ window.onunload = function () {
   null;
 };
 
-//Save email and password to sessionStorage
+//navigate to home page if logged
 let storedArray = sessionStorage.getItem("userKey");
 
 userArray = JSON.parse(storedArray);
