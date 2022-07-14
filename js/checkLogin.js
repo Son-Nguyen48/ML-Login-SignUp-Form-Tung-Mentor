@@ -75,20 +75,16 @@ btnLogin.onclick = function (e) {
 
   //Login success
   if (isValidEmail && isValidPassword) {
-    const users = JSON.parse(localStorage.getItem("usersSignup")) ?? [];
-    let user = {
-      email: emailValue,
-      password: passwordValue
-    };
+    const users = JSON.parse(localStorage.getItem("usersList")) ?? [];
     //Check if user include in usersSignup
-    const isValidUser = users.some(function (user) {
+    const isValidUser = users.find((user) => {
       return user.email === emailValue && user.password === passwordValue;
     });
 
     if (isValidUser) {
       //Save email, password in localStorage "userLogged" if user include in "usersSignup"
       //and navigate to homepage.html
-      localStorage.setItem("userLogged", JSON.stringify(user));
+      localStorage.setItem("userLogged", JSON.stringify(isValidUser));
       window.location = "homepage.html";
     } else {
       //Show error if user isn't include in "userSignup"
@@ -99,6 +95,9 @@ btnLogin.onclick = function (e) {
     }
   }
 };
+
+// localStorage.setItem("usersList", "");
+// localStorage.setItem("userLogged", "");
 
 //3. Stop browser back button
 function preventBack() {

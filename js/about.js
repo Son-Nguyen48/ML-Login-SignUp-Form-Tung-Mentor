@@ -1,4 +1,4 @@
-let userLogged = JSON.parse(localStorage.getItem("userLogged")) ?? [];
+const userLogged = JSON.parse(localStorage.getItem("userLogged")) ?? [];
 console.log(userLogged.email);
 
 const signupLink = document.querySelector(".signup-link");
@@ -23,6 +23,6 @@ if (userLogged.email) {
 //2. Logout
 
 logoutLink.onclick = function (e) {
-  localStorage.setItem("userLogged", JSON.stringify({}));
-  window.location = "about.html";
+  localStorage.removeItem("userLogged");
+  window.location = "index.html";
 };

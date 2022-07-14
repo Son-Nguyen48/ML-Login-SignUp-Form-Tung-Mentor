@@ -127,19 +127,35 @@ btnSignup.onclick = function (e) {
   //Regiter success
   if (isValidEmail && isValidPassword && isSamePassword) {
     //Save email, password to usersSignup and navigate to login page
-    let usersSignup = JSON.parse(localStorage.getItem("usersSignup")) ?? [];
-    let user = {
+    let userListLocal = JSON.parse(localStorage.getItem("usersList")) ?? [];
+    const userLogin = {
       fullName: fullNameValue,
       email: emailValue,
       password: passwordValue
     };
-    usersSignup.push(user);
-    localStorage.setItem("usersSignup", JSON.stringify(usersSignup));
+    console.log(userListLocal);
+    const isRepeatUser = userListLocal.some((user) => {
+      return (
+        userLogin.email === user.email && userLogin.password === user.password
+      );
+    });
+    if (!isRepeatUser) {
+      userListLocal.push(userLogin);
+    }
+    localStorage.setItem("usersList", JSON.stringify(userListLocal));
     location.href = "./index.html";
   }
 };
+// const userLogin = [
+//   {
+//     fullName: "aa",
+//     email: "aa@aa.aa",
+//     password: "19124321My@"
+//   }
+// ];
+// localStorage.setItem("usersList", JSON.stringify(userLogin));
 //navigate to home page if logged
-let userLogged = JSON.parse(localStorage.getItem("userLogged")) ?? [];
+const userLogged = JSON.parse(localStorage.getItem("userLogged")) ?? [];
 
 const signupLink = document.querySelector(".signup-link");
 const loginLink = document.querySelector(".login-link");

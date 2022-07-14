@@ -114,6 +114,16 @@ form {
     color: #333;
     text-decoration: none;
     transition: 0.3s all ease;
+    margin: 0 auto;
+  }
+
+  .signup-link,
+  .about-link,
+  .login-link,
+  .logout-link,
+  .homepage-link {
+    max-width: 50%;
+    min-width: 40%;
   }
 
   .signup-link,
@@ -122,6 +132,7 @@ form {
   .logout-link,
   .homepage-link {
     &:hover {
+      cursor: pointer;
       transform: scale(1.2);
     }
   }

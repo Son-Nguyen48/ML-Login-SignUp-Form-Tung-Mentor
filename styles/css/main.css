@@ -108,12 +108,22 @@ form .homepage-link {
   color: #333;
   text-decoration: none;
   transition: 0.3s all ease;
+  margin: 0 auto;
+}
+form .signup-link,
+form .about-link,
+form .login-link,
+form .logout-link,
+form .homepage-link {
+  max-width: 50%;
+  min-width: 40%;
 }
 form .signup-link:hover,
 form .about-link:hover,
 form .login-link:hover,
 form .logout-link:hover,
 form .homepage-link:hover {
+  cursor: pointer;
   transform: scale(1.2);
 }
 form .signup-button {
