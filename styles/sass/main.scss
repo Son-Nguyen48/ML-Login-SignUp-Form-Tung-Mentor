@@ -10,9 +10,9 @@ html {
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -28,7 +28,7 @@ main {
   max-width: 120rem;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
+  margin: 8rem auto 0 auto;
   justify-content: center;
   align-items: center;
   .login-pic,
@@ -39,6 +39,16 @@ main {
     width: 36rem;
     padding: 2rem;
   }
+}
+
+.main {
+  max-width: 120rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8rem auto 0 auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 form {
@@ -73,14 +83,16 @@ form {
 
   .email-validate,
   .password-validate,
-  .passwordComparison-validate {
+  .passwordComparison-validate,
+  .login-validate {
     display: none;
   }
 
   .email-validate.error,
   .password-validate.error,
   .passwordComparison-validate.error,
-  .fullName-validate.error {
+  .fullName-validate.error,
+  .login-validate {
     display: block;
     color: #fff;
     font-size: 1.4rem;
@@ -95,7 +107,9 @@ form {
   .signup-link,
   .login-button,
   .about-link,
-  .login-link {
+  .login-link,
+  .logout-link,
+  .homepage-link {
     font-size: 2rem;
     color: #333;
     text-decoration: none;
@@ -104,7 +118,9 @@ form {
 
   .signup-link,
   .about-link,
-  .login-link {
+  .login-link,
+  .logout-link,
+  .homepage-link {
     &:hover {
       transform: scale(1.2);
     }

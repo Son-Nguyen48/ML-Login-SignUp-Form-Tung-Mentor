@@ -10,9 +10,6 @@ html {
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -28,7 +25,7 @@ main {
   max-width: 120rem;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 auto;
+  margin: 8rem auto 0 auto;
   justify-content: center;
   align-items: center;
 }
@@ -39,6 +36,16 @@ main .login-form {
   align-items: center;
   width: 36rem;
   padding: 2rem;
+}
+
+.main {
+  max-width: 120rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8rem auto 0 auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 form {
@@ -74,13 +81,15 @@ form button:focus-visible {
 }
 form .email-validate,
 form .password-validate,
-form .passwordComparison-validate {
+form .passwordComparison-validate,
+form .login-validate {
   display: none;
 }
 form .email-validate.error,
 form .password-validate.error,
 form .passwordComparison-validate.error,
-form .fullName-validate.error {
+form .fullName-validate.error,
+form .login-validate {
   display: block;
   color: #fff;
   font-size: 1.4rem;
@@ -92,7 +101,9 @@ form button:hover {
 form .signup-link,
 form .login-button,
 form .about-link,
-form .login-link {
+form .login-link,
+form .logout-link,
+form .homepage-link {
   font-size: 2rem;
   color: #333;
   text-decoration: none;
@@ -100,7 +111,9 @@ form .login-link {
 }
 form .signup-link:hover,
 form .about-link:hover,
-form .login-link:hover {
+form .login-link:hover,
+form .logout-link:hover,
+form .homepage-link:hover {
   transform: scale(1.2);
 }
 form .signup-button {

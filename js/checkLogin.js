@@ -4,7 +4,9 @@ const btnLogin = document.querySelector(".login-button");
 
 const password = document.getElementById("password");
 
-//Show error when key change
+//1. Show error when key change
+/**--------------------------------------------------- */
+
 const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 const regexPassword =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/g;
@@ -32,7 +34,9 @@ password.onkeyup = getFunctionEvent(
   regexPassword,
   passwordErrorMessage
 );
-//Show error when click button
+
+//2. Show error when click button
+/**--------------------------------------------------- */
 
 btnLogin.onclick = function (e) {
   e.preventDefault();
@@ -71,18 +75,32 @@ btnLogin.onclick = function (e) {
 
   //Login success
   if (isValidEmail && isValidPassword) {
-    let userArray = [
-      { id: 1, email: emailValue, password: passwordValue },
-      { id: 2, email: emailValue, password: passwordValue }
-    ];
-    console.log("go here");
-    sessionStorage.setItem("userKey", JSON.stringify(userArray));
-    console.log("go here");
-    location.href = "homepage.html";
+    const users = JSON.parse(localStorage.getItem("usersSignup")) ?? [];
+    let user = {
+      email: emailValue,
+      password: passwordValue
+    };
+    //Check if user include in usersSignup
+    const isValidUser = users.some(function (user) {
+      return user.email === emailValue && user.password === passwordValue;
+    });
+
+    if (isValidUser) {
+      //Save email, password in localStorage "userLogged" if user include in "usersSignup"
+      //and navigate to homepage.html
+      localStorage.setItem("userLogged", JSON.stringify(user));
+      window.location = "homepage.html";
+    } else {
+      //Show error if user isn't include in "userSignup"
+      const btnLoginErrorNode = btnLogin.parentElement.lastElementChild;
+      console.log(btnLoginErrorNode);
+      btnLoginErrorNode.classList.add("error");
+      btnLoginErrorNode.textContent = "Nhập sai email, password! Mời nhập lại";
+    }
   }
 };
 
-//Stop browser back button
+//3. Stop browser back button
 function preventBack() {
   window.history.forward();
 }
@@ -93,16 +111,12 @@ window.onunload = function () {
   null;
 };
 
-//navigate to home page if logged
-let storedArray = sessionStorage.getItem("userKey");
-
-userArray = JSON.parse(storedArray);
-
-console.log(userArray);
+//4. navigate to home page if logged
+let userLogged = JSON.parse(localStorage.getItem("userLogged")) ?? [];
 
 const signupLink = document.querySelector(".signup-link");
 const loginLink = document.querySelector(".login-link");
 
-if (userArray) {
+if (userLogged.email) {
   window.location = "homepage.html";
 }

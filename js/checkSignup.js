@@ -3,7 +3,7 @@ const email = document.getElementById("email");
 const password = document.querySelector(".password");
 const confirmPassword = document.querySelector(".confirm-password");
 const btnSignup = document.querySelector(".signup-button");
-//Show error when key change
+//1. Show error when key change
 
 const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 const regexPassword =
@@ -58,7 +58,7 @@ password.onkeyup = eventOnkeyupRegex(
 
 /*--------------------------------------------------------------------*/
 
-//Show error when click button
+//2. Show error when click button
 btnSignup.onclick = function (e) {
   e.preventDefault();
   const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
@@ -126,6 +126,24 @@ btnSignup.onclick = function (e) {
   }
   //Regiter success
   if (isValidEmail && isValidPassword && isSamePassword) {
+    //Save email, password to usersSignup and navigate to login page
+    let usersSignup = JSON.parse(localStorage.getItem("usersSignup")) ?? [];
+    let user = {
+      fullName: fullNameValue,
+      email: emailValue,
+      password: passwordValue
+    };
+    usersSignup.push(user);
+    localStorage.setItem("usersSignup", JSON.stringify(usersSignup));
     location.href = "./index.html";
   }
 };
+//navigate to home page if logged
+let userLogged = JSON.parse(localStorage.getItem("userLogged")) ?? [];
+
+const signupLink = document.querySelector(".signup-link");
+const loginLink = document.querySelector(".login-link");
+
+if (userLogged.email) {
+  window.location = "homepage.html";
+}
