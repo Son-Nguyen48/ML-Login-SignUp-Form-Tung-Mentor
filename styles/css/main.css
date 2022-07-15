@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Poppins:wght@300;400;500;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+  font-size: 2rem;
+}
+
+main {
+  max-width: 120rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8rem auto 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+main .login-pic,
+main .login-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36rem;
+  padding: 2rem;
+}
+
+.main {
+  max-width: 120rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8rem auto 0 auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+form {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+form h1 {
+  color: #333;
+  font-size: 3.6rem;
+  font-weight: 700;
+  transition: 0.3s all ease;
+}
+form h1:hover {
+  transform: scale(1.2);
+}
+form input,
+form button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  font-family: "Montserrat", sans-serif;
+  transition: 0.3s all ease;
+}
+form input:focus-visible,
+form button:focus-visible {
+  background-color: #e3fafc;
+  box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.6);
+  color: #23a6d5;
+  font-family: "Poppins", sans-serif;
+}
+form .email-validate,
+form .password-validate,
+form .passwordComparison-validate,
+form .login-validate {
+  display: none;
+}
+form .email-validate.error,
+form .password-validate.error,
+form .passwordComparison-validate.error,
+form .fullName-validate.error,
+form .login-validate {
+  display: block;
+  color: #fff;
+  font-size: 1.4rem;
+}
+form button:hover {
+  cursor: pointer;
+  transform: scale(0.98);
+}
+form .signup-link,
+form .login-button,
+form .about-link,
+form .login-link,
+form .logout-link,
+form .homepage-link {
+  font-size: 2rem;
+  color: #333;
+  text-decoration: none;
+  transition: 0.3s all ease;
+  margin: 0 auto;
+}
+form .signup-link,
+form .about-link,
+form .login-link,
+form .logout-link,
+form .homepage-link {
+  max-width: 50%;
+  min-width: 40%;
+}
+form .signup-link:hover,
+form .about-link:hover,
+form .login-link:hover,
+form .logout-link:hover,
+form .homepage-link:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+form .signup-button {
+  font-size: 2rem;
+  color: #333;
+  text-decoration: none;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
